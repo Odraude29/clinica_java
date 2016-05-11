@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./ModeloEscolar.xhtml">
+
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="content">
+                 <h:form>
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="CPF"/>
+                        <p:inputText value="#{PacienteBean.paciente.cpf}"/>
+                        
+                        <p:outputLabel value="Nome"/>
+                        <p:inputText value="#{PacienteBean.paciente.nome}"/>
+                        
+                        <p:outputLabel value="Data de Nascimento"/>
+                        <p:inputText value="#{PacienteBean.paciente.dataNasc}"/>
+                        
+                        <p:outputLabel value="Telefone"/>
+                        <p:inputText value="#{PacienteBean.paciente.telefone}"/>
+                        
+                        <p:outputLabel value="Sexo"/>
+                        <p:inputText value="#{PacienteBean.paciente.sexo}"/>
+                        
+                        <p:outputLabel value="Convenio"/>
+                        <p:inputText value="#{PacienteBean.paciente.convenio}"/>
+                        
+                        <p:outputLabel value="Empresa"/>
+                        <p:inputText value="#{PacienteBean.paciente.empresa}"/>
+                        
+                        
+                        <p:commandButton value="Cadastrar" action="#{PacienteBean.cadastrar()}" ajax="false"/>
+                    </p:panelGrid>
+                </h:form>
+                
+                <h:form id="consultarPaciente">
+                    
+                    <p:dataTable var="list" value="#{PacienteBean.consultar()}">
+                        <p:column headerText="id">
+                            <h:outputText value="#{list.idPaciente}"/>
+                        </p:column>
+                        <p:column headerText="CPF">
+                            <h:outputText value="#{list.cpf}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{list.nome}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Data de Nascimento">
+                            <h:outputText value="#{list.dataNasc}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Telefone">
+                            <h:outputText value="#{list.telefone}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Sexo">
+                            <h:outputText value="#{list.sexo}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Convenio">
+                            <h:outputText value="#{list.convenio}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Empresa">
+                            <h:outputText value="#{list.empresa}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Operações">
+                            <p:commandButton value="Editar" action="#{PacienteBean.editar(list)}" ajax="false"/>
+                            <p:commandButton value="Excluir" action="#{PacienteBean.excluir(list)}" ajax="false"/>
+                        </p:column>
+                    </p:dataTable>
+                    
+                    
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
